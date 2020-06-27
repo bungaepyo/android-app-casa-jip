@@ -13,41 +13,38 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 
-public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> {
-    private List<ChatData> mDataset;
-    private String myNickName;
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> {
+    private List<TaskData> mDataset;
+    private String myUserName;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView TextView_nickname;
-        public TextView TextView_message;
+        public TextView TextView_username;
+        public TextView TextView_taskMessage;
         public View rootView;
         public MyViewHolder(View v) {
             super(v);
-            TextView_nickname = v.findViewById(R.id.TextView_nickname);
-            TextView_message = v.findViewById(R.id.TextView_message);
+            TextView_username = v.findViewById(R.id.TextView_username);
+            TextView_taskMessage = v.findViewById(R.id.TextView_taskMessage);
             rootView = v;
-
         }
-
-
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ToDoAdapter(List<ChatData> myDataset, Context context, String myNickName) {
+    public TaskAdapter(List<TaskData> myDataset, Context context, String myUserName) {
         mDataset = myDataset;
-        this.myNickName = myNickName;
+        this.myUserName = myUserName;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public ToDoAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+    public TaskAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                        int viewType) {
         // create a new view
         LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_chat, parent, false);
+                .inflate(R.layout.row_task, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -58,20 +55,12 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Log.d("CHATCHAT", mDataset.toString());
-        ChatData chat = mDataset.get(position);
-        holder.TextView_nickname.setText(chat.getNickname());
-        holder.TextView_message.setText(chat.getMessage());
-
-        if(chat.getNickname().equals(this.myNickName)){
-        holder.TextView_message.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-        holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-    } else {
-        holder.TextView_message.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        Log.d("TASKTASK", mDataset.toString());
+        TaskData task = mDataset.get(position);
+        holder.TextView_username.setText(task.getUsername());
+        holder.TextView_taskMessage.setText(task.getTaskOnline());
+        holder.TextView_taskMessage.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
     }
-
-}
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
@@ -79,12 +68,12 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         return mDataset == null ? 0 :  mDataset.size();
     }
 
-    public ChatData getChat(int position) {
+    public TaskData getTask(int position) {
         return mDataset != null ? mDataset.get(position) : null;
     }
 
-    public void addChat(ChatData chat){
-        mDataset.add(chat);
+    public void addTask(TaskData task){
+        mDataset.add(task);
         notifyItemInserted(mDataset.size()-1);
     }
 

@@ -5,13 +5,13 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/TextView_nickname"
-        android:textSize="12sp"
+        android:id="@+id/TextView_username"
+        android:textSize="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/TextView_message"
-        android:textSize="20sp"
+        android:id="@+id/TextView_taskMessage"
+        android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>
