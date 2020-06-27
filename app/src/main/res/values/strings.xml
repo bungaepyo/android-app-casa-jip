@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">casa_jip</string>
+    <string name="button_send">SEND</string>
 </resources>
