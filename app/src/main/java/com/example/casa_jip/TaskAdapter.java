@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,27 +16,25 @@ import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> {
     private List<TaskData> mDataset;
-    private String myUserName;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView TextView_username;
+        // each data item has a checkbox, a string and a view
+        public CheckBox CheckBox_taskChecked;
         public TextView TextView_taskMessage;
         public View rootView;
         public MyViewHolder(View v) {
             super(v);
-            TextView_username = v.findViewById(R.id.TextView_username);
             TextView_taskMessage = v.findViewById(R.id.TextView_taskMessage);
+            CheckBox_taskChecked = v.findViewById(R.id.CheckBox_taskChecked);
             rootView = v;
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TaskAdapter(List<TaskData> myDataset, Context context, String myUserName) {
-        mDataset = myDataset;
-        this.myUserName = myUserName;
+    public TaskAdapter(List<TaskData> myDataset, Context context, String username) {
+        mDataset = myDataset;;
     }
 
     // Create new views (invoked by the layout manager)
@@ -45,7 +44,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         // create a new view
         LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_task, parent, false);
-
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
@@ -57,9 +55,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         // - replace the contents of the view with that element
         Log.d("TASKTASK", mDataset.toString());
         TaskData task = mDataset.get(position);
-        holder.TextView_username.setText(task.getUsername());
-        holder.TextView_taskMessage.setText(task.getTaskOnline());
+        holder.TextView_taskMessage.setText(task.getTaskMessage());
+        holder.CheckBox_taskChecked.setChecked(task.getTaskChecked());
         holder.TextView_taskMessage.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+    }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.CheckBox_taskChecked:
+                if (checked) {
+                }
+                // Put some meat on the sandwich
+            else
+                // Remove the meat
+                break;
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

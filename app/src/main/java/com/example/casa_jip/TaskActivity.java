@@ -1,10 +1,22 @@
 package com.example.casa_jip;
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,29 +41,46 @@ public class TaskActivity extends AppCompatActivity {
     private List<TaskData> taskList;
     private String username = "username_1";
     private EditText EditText_taskMessage;
-    private Button Button_add;
+    private Button btn_add;
     private DatabaseReference myRef;
+    private CheckBox taskChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
 
-        EditText_taskMessage = findViewById(R.id.EditText_taskMessage);
-        Button_add = findViewById(R.id.Button_add);
+//        taskChecked = findViewById(R.id.CheckBox_taskChecked);
+//
+//        taskChecked.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                taskChecked.setChecked(true);
+//            }
+//        });
 
-        Button_add.setOnClickListener(new View.OnClickListener() {
+
+        // add more tasks
+        EditText_taskMessage = findViewById(R.id.EditText_taskMessage);
+        btn_add = findViewById(R.id.btn_add);
+
+        btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String taskTyped = EditText_taskMessage.getText().toString();
+                String taskMessage = EditText_taskMessage.getText().toString();
 
-                if(taskTyped != null){
+                if(taskMessage != null){
                     TaskData task = new TaskData();
-                    task.setTask(taskTyped);
+                    task.setUsername(username);
+                    task.setTaskMessage(taskMessage);
+                    task.setTaskChecked(false);
                     myRef.push().setValue(task);
                 }
             }
         });
+
+
+
 
         recyclerView = findViewById(R.id.task_recycler_view);
         recyclerView.setHasFixedSize(true);
