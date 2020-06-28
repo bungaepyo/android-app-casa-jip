@@ -1,6 +1,8 @@
 package com.example.casa_jip;
 
+import android.app.DatePickerDialog;
 import android.content.ClipData;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.view.Menu;
@@ -17,11 +20,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,8 +38,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class TaskActivity extends AppCompatActivity {
 
@@ -47,6 +51,10 @@ public class TaskActivity extends AppCompatActivity {
     private CheckBox CheckBox_taskChecked;
     private boolean taskBool;
 
+    // datepicker
+    private DatePickerDialog datePicker;
+    private EditText textDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,24 +63,33 @@ public class TaskActivity extends AppCompatActivity {
         // add more tasks
         EditText_taskMessage = findViewById(R.id.EditText_taskMessage);
         btn_add = findViewById(R.id.btn_add);
+
+        // is the task completed
+        CheckBox_taskChecked = findViewById(R.id.CheckBox_taskChecked);
+
         // when btn_add is clicked with text filled, it pushes the taskMessage
         btn_add.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
                 String taskMessage = EditText_taskMessage.getText().toString();
+                if (taskMessage != null) {
 
-                if(taskMessage != null){
+                    final Calendar cldr = Calendar.getInstance();
+                    int day = cldr.get(Calendar.DAY_OF_MONTH);
+                    int month = cldr.get(Calendar.MONTH);
+                    int year = cldr.get(Calendar.YEAR);
+
+
                     TaskData task = new TaskData();
                     task.setTaskMessage(taskMessage);
                     task.setTaskBoolean(false);
+                    task.setDueDate(cldr);
                     myRef.push().setValue(task);
                     EditText_taskMessage.setText("");
                 }
             }
         });
-
-        CheckBox_taskChecked = findViewById(R.id.CheckBox_taskChecked);
-
         recyclerView = findViewById(R.id.task_recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -104,7 +121,7 @@ public class TaskActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         taskBool = CheckBox_taskChecked.isChecked();
-                        if(taskBool){
+                        if (taskBool) {
                             TaskData updatedTask = dataSnapshot.getValue(TaskData.class);
                             updatedTask.setTaskBoolean(true);
                             myRef.push().setValue(updatedTask);
@@ -129,6 +146,6 @@ public class TaskActivity extends AppCompatActivity {
 
             }
         });
-
     }
 }
+
