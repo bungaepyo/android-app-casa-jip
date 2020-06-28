@@ -66,22 +66,12 @@ public class TaskActivity extends AppCompatActivity {
                     task.setTaskMessage(taskMessage);
                     task.setTaskBoolean(false);
                     myRef.push().setValue(task);
+                    EditText_taskMessage.setText("");
                 }
             }
         });
 
         CheckBox_taskChecked = findViewById(R.id.CheckBox_taskChecked);
-
-//        CheckBox_taskChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                taskBool = CheckBox_taskChecked.isChecked();
-//                if(taskBool){
-//
-//                }
-//            }
-//        });
-
 
         recyclerView = findViewById(R.id.task_recycler_view);
         recyclerView.setHasFixedSize(true);
