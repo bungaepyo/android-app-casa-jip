@@ -39,7 +39,6 @@ public class TaskActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<TaskData> taskList;
-    private String username = "username_1";
     private EditText EditText_taskMessage;
     private Button btn_add;
     private DatabaseReference myRef;
@@ -50,14 +49,11 @@ public class TaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
 
-//        taskChecked = findViewById(R.id.CheckBox_taskChecked);
-//
-//        taskChecked.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                taskChecked.setChecked(true);
-//            }
-//        });
+        taskChecked = findViewById(R.id.CheckBox_taskChecked);
+
+        public void onCheckboxClicked(View view) {
+            boolean checked = ((CheckBox) view).isChecked();
+        }
 
 
         // add more tasks
@@ -71,7 +67,6 @@ public class TaskActivity extends AppCompatActivity {
 
                 if(taskMessage != null){
                     TaskData task = new TaskData();
-                    task.setUsername(username);
                     task.setTaskMessage(taskMessage);
                     task.setTaskChecked(false);
                     myRef.push().setValue(task);
@@ -88,7 +83,7 @@ public class TaskActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         taskList = new ArrayList<>();
-        mAdapter = new TaskAdapter(taskList, TaskActivity.this, username);
+        mAdapter = new TaskAdapter(taskList, TaskActivity.this);
         recyclerView.setAdapter(mAdapter);
 
         // Write a message to the database

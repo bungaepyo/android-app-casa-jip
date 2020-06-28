@@ -33,7 +33,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TaskAdapter(List<TaskData> myDataset, Context context, String username) {
+    public TaskAdapter(List<TaskData> myDataset, Context context) {
         mDataset = myDataset;;
     }
 
@@ -60,21 +60,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder.TextView_taskMessage.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
     }
 
-    public void onCheckboxClicked(View view) {
-        // Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
-
-        // Check which checkbox was clicked
-        switch(view.getId()) {
-            case R.id.CheckBox_taskChecked:
-                if (checked) {
-                }
-                // Put some meat on the sandwich
-            else
-                // Remove the meat
-                break;
-        }
-    }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
