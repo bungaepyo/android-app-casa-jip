@@ -5,8 +5,8 @@ import android.widget.CheckBox;
 import java.io.Serializable;
 
 public class TaskData implements Serializable {
-        private String taskMessage;
-    private boolean checkBool;
+    private String taskMessage;
+    private boolean taskBool;
 
     public String getTaskMessage() {
         return taskMessage;
@@ -16,15 +16,15 @@ public class TaskData implements Serializable {
         this.taskMessage = taskMessage;
     }
 
-    public boolean getTaskChecked() {
-        if (checkBool) {
+    public boolean getTaskBoolean() {
+        if (taskBool) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void setTaskChecked(boolean checkBool) {
-        this.checkBool = checkBool;
+    public void setTaskBoolean(boolean taskBool) {
+        this.taskBool = taskBool;
     }
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.view.Menu;
@@ -24,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,24 +44,18 @@ public class TaskActivity extends AppCompatActivity {
     private EditText EditText_taskMessage;
     private Button btn_add;
     private DatabaseReference myRef;
-    private CheckBox taskChecked;
+    private CheckBox CheckBox_taskChecked;
+    private boolean taskBool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
 
-        taskChecked = findViewById(R.id.CheckBox_taskChecked);
-
-        public void onCheckboxClicked(View view) {
-            boolean checked = ((CheckBox) view).isChecked();
-        }
-
-
         // add more tasks
         EditText_taskMessage = findViewById(R.id.EditText_taskMessage);
         btn_add = findViewById(R.id.btn_add);
-
+        // when btn_add is clicked with text filled, it pushes the taskMessage
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,13 +64,23 @@ public class TaskActivity extends AppCompatActivity {
                 if(taskMessage != null){
                     TaskData task = new TaskData();
                     task.setTaskMessage(taskMessage);
-                    task.setTaskChecked(false);
+                    task.setTaskBoolean(false);
                     myRef.push().setValue(task);
                 }
             }
         });
 
+        CheckBox_taskChecked = findViewById(R.id.CheckBox_taskChecked);
 
+//        CheckBox_taskChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                taskBool = CheckBox_taskChecked.isChecked();
+//                if(taskBool){
+//
+//                }
+//            }
+//        });
 
 
         recyclerView = findViewById(R.id.task_recycler_view);
@@ -91,6 +97,8 @@ public class TaskActivity extends AppCompatActivity {
         myRef = database.getReference();
 
         myRef.addChildEventListener(new ChildEventListener() {
+
+
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Log.d("TASKTASK", dataSnapshot.getValue().toString());
@@ -99,9 +107,22 @@ public class TaskActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            public void onChildChanged(@NonNull final DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.d("taskchecked", dataSnapshot.getValue().toString());
 
+                CheckBox_taskChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        taskBool = CheckBox_taskChecked.isChecked();
+                        if(taskBool){
+                            TaskData updatedTask = dataSnapshot.getValue(TaskData.class);
+                            updatedTask.setTaskBoolean(true);
+                            myRef.push().setValue(updatedTask);
+                        }
+                    }
+                });
             }
+
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {

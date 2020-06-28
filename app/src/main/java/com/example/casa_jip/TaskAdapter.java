@@ -56,8 +56,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         Log.d("TASKTASK", mDataset.toString());
         TaskData task = mDataset.get(position);
         holder.TextView_taskMessage.setText(task.getTaskMessage());
-        holder.CheckBox_taskChecked.setChecked(task.getTaskChecked());
-        holder.TextView_taskMessage.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        holder.CheckBox_taskChecked.setChecked(task.getTaskBoolean());
     }
 
 
