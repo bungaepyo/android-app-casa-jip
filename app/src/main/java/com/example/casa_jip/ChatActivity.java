@@ -53,7 +53,7 @@ public class ChatActivity extends AppCompatActivity {
                 String message = EditText_chat.getText().toString();
                 String sendHour = LocalTime.now().toString().substring(0,2);
                 String sendMinute = LocalTime.now().toString().substring(2,5);
-                Integer sendHr = Integer.valueOf(sendHour);
+                int sendHr = Integer.valueOf(sendHour);
 
                 if(sendHr > 12){
                     sendTime = (sendHr - 12) + sendMinute + " PM";
@@ -61,13 +61,14 @@ public class ChatActivity extends AppCompatActivity {
                     sendTime = sendHour + sendMinute + " AM";
                 }
 
-                if(message != null){
+                if(message != null) {
                     ChatData chat = new ChatData();
                     chat.setNickname(nickname);
                     chat.setMessage(message);
                     chat.setSendTime(sendTime);
                     myRef.push().setValue(chat);
                     closeKeyboard();
+                    clearText();
                 }
             }
         });
@@ -88,7 +89,7 @@ public class ChatActivity extends AppCompatActivity {
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d("CHATCHAT", dataSnapshot.getValue().toString());
+                //Log.d("CHATCHAT", dataSnapshot.getValue().toString());
                 ChatData chat = dataSnapshot.getValue(ChatData.class);
                 ((ChatAdapter) mAdapter).addChat(chat);
             }
@@ -114,6 +115,10 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void clearText() {
+        EditText_chat.getText().clear();
     }
 
     private void closeKeyboard(){
