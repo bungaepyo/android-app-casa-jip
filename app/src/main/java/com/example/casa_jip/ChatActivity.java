@@ -30,7 +30,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
     private List<ChatData> chatList;
     private String nickname = "nickname_1";
     private EditText EditText_chat;
@@ -67,8 +67,8 @@ public class ChatActivity extends AppCompatActivity {
                     chat.setMessage(message);
                     chat.setSendTime(sendTime);
                     myRef.push().setValue(chat);
-                    closeKeyboard();
                     clearText();
+                    updateToEnd();
                 }
             }
         });
@@ -76,6 +76,8 @@ public class ChatActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.chat_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setReverseLayout(false);
+        mLayoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         chatList = new ArrayList<>();
@@ -117,10 +119,17 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    /** This method keeps focus on the last item of the recyclerView */
+    public void updateToEnd(){
+        mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
+    }
+
+    /** This method clears out the EditText field*/
     public void clearText() {
         EditText_chat.getText().clear();
     }
 
+    /** This method systematically closes the keyboard */
     private void closeKeyboard(){
         View view = this.getCurrentFocus();
         if (view != null){
