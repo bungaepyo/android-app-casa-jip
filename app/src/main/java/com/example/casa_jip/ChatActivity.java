@@ -32,7 +32,7 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private List<ChatData> chatList;
-    private String nickname = "nickname_1";
+    private String nickname = "nickname_2";
     private EditText EditText_chat;
     private Button Button_send;
     private DatabaseReference myRef;
