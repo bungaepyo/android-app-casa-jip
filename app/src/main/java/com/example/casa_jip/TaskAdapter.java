@@ -52,8 +52,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        Log.d("TASKTASK", mDataset.toString());
+//         - replace the contents of the view with that element
+//        Log.d("TASKTASK", mDataset.toString());
         TaskData task = mDataset.get(position);
         holder.TextView_taskMessage.setText(task.getTaskMessage());
         holder.CheckBox_taskChecked.setChecked(task.getTaskBoolean());

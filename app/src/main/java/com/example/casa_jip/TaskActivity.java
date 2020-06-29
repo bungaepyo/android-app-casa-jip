@@ -1,37 +1,27 @@
 package com.example.casa_jip;
 
-import android.app.DatePickerDialog;
-import android.content.ClipData;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,12 +38,9 @@ public class TaskActivity extends AppCompatActivity {
     private EditText EditText_taskMessage;
     private Button btn_add;
     private DatabaseReference myRef;
+
     private CheckBox CheckBox_taskChecked;
     private boolean taskBool;
-
-    // datepicker
-    private DatePickerDialog datePicker;
-    private EditText textDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,23 +60,23 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String taskMessage = EditText_taskMessage.getText().toString();
+                String strDue = LocalDate.now().toString();
+
                 if (taskMessage != null) {
-
-                    final Calendar cldr = Calendar.getInstance();
-                    int day = cldr.get(Calendar.DAY_OF_MONTH);
-                    int month = cldr.get(Calendar.MONTH);
-                    int year = cldr.get(Calendar.YEAR);
-
-
                     TaskData task = new TaskData();
                     task.setTaskMessage(taskMessage);
                     task.setTaskBoolean(false);
-                    task.setDueDate(cldr);
+                    task.setDue(strDue);
                     myRef.push().setValue(task);
-                    EditText_taskMessage.setText("");
+                    EditText_taskMessage.getText().clear();
+                    updateToEnd();
+                    closeKeyboard();
                 }
+
             }
+
         });
+
         recyclerView = findViewById(R.id.task_recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -108,7 +95,6 @@ public class TaskActivity extends AppCompatActivity {
 
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d("TASKTASK", dataSnapshot.getValue().toString());
                 TaskData task = dataSnapshot.getValue(TaskData.class);
                 ((TaskAdapter) mAdapter).addTask(task);
             }
@@ -147,5 +133,28 @@ public class TaskActivity extends AppCompatActivity {
             }
         });
     }
-}
+
+
+        /** This method keeps focus on the last item of the recyclerView */
+        public void updateToEnd() {
+            recyclerView.smoothScrollToPosition(mAdapter.getItemCount());
+        };
+
+        /** This method clears out the EditText field*/
+        public void clearText() {
+            EditText_taskMessage.getText().clear();
+            }
+
+        /** This method systematically closes the keyboard */
+        private void closeKeyboard() {
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        };
+
+
+    }
+
 

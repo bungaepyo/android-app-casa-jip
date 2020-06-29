@@ -1,27 +1,17 @@
 package com.example.casa_jip;
 
 import android.os.Build;
-import android.widget.CheckBox;
 
 import androidx.annotation.RequiresApi;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
 
 public class TaskData implements Serializable {
-    private String taskMessage;
     private boolean taskBool;
-    private Date dueDate;
+    private String taskMessage;
+    private String dueDate;
 
-
-    public String getTaskMessage() {
-        return taskMessage;
-    }
-
-    public void setTaskMessage(String taskMessage) {
-        this.taskMessage = taskMessage;
-    }
+    // note due is string and dueDate is a date Object
 
     public boolean getTaskBoolean() {
         if (taskBool) {
@@ -35,12 +25,21 @@ public class TaskData implements Serializable {
         this.taskBool = taskBool;
     }
 
-    public Date getDueDate() {
+
+    public String getTaskMessage() {
+        return taskMessage;
+    }
+
+    public void setTaskMessage(String taskMessage) {
+        this.taskMessage = taskMessage;
+    }
+
+    public String getDue() {
         return dueDate;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void setDueDate(Calendar dueDate) {
-        this.dueDate = dueDate.getTime();
+    public void setDue(String dueDate) {
+        this.dueDate = dueDate;
     }
 }
