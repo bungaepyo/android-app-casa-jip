@@ -38,7 +38,8 @@ public class ChatActivity extends AppCompatActivity {
     private String nickname = "nickname_2";
     private EditText EditText_chat;
     private Button Button_send;
-    private DatabaseReference myRef;
+    //private DatabaseReference taskRef;
+    private DatabaseReference chatRef;
     private String sendTime;
 
     @Override
@@ -69,7 +70,7 @@ public class ChatActivity extends AppCompatActivity {
                     chat.setNickname(nickname);
                     chat.setMessage(message);
                     chat.setSendTime(sendTime);
-                    myRef.push().setValue(chat);
+                    chatRef.push().setValue(chat);
                     clearText();
                     updateToEnd();
                 }
@@ -87,11 +88,14 @@ public class ChatActivity extends AppCompatActivity {
         mAdapter = new ChatAdapter(chatList, ChatActivity.this, nickname);
         mRecyclerView.setAdapter(mAdapter);
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
 
-        myRef.addChildEventListener(new ChildEventListener() {
+        //FirebaseDatabase taskDb = FirebaseDatabase.getInstance("https://casajip-c4cc9.firebaseio.com/");
+        //taskRef = taskDb.getReference();
+
+        FirebaseDatabase chatDb = FirebaseDatabase.getInstance("https://casajip-c4cc9-50ef0.firebaseio.com/");
+        chatRef = chatDb.getReference();
+
+        chatRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 //Log.d("CHATCHAT", dataSnapshot.getValue().toString());
