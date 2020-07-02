@@ -65,7 +65,7 @@ public class ChatActivity extends AppCompatActivity {
                     sendTime = sendHour + sendMinute + " AM";
                 }
 
-                if(message != null) {
+                if(message.length() > 0) {
                     ChatData chat = new ChatData();
                     chat.setNickname(nickname);
                     chat.setMessage(message);
