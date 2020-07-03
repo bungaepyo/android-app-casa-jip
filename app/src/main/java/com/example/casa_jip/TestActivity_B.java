@@ -28,7 +28,7 @@ public class TestActivity_B extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navigation_task:
-                        startActivity(new Intent(getApplicationContext(),TestActivity_A.class));
+                        startActivity(new Intent(getApplicationContext(),TaskActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_home:
