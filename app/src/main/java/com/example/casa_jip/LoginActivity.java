@@ -21,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailTB, passwordTB;
     private Button btn_login;
-    private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
     @Override
@@ -42,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUserAccount() {
-        progressBar.setVisibility(View.VISIBLE);
 
         String email, password;
         email = emailTB.getText().toString();
@@ -63,16 +61,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-
-                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, ChatActivity.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
+
     }
 
     private void initializeUI() {

@@ -1,9 +1,11 @@
 package com.example.casa_jip;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -22,11 +24,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class TaskActivity extends AppCompatActivity {
@@ -130,6 +135,33 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+
+        //Initialize
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Chat Selected
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+
+        //ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
+        {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navigation_task:
+                        startActivity(new Intent(getApplicationContext(),TaskActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.navigation_home:
+                        return true;
+                    case R.id.navigation_gallery:
+                        startActivity(new Intent(getApplicationContext(),TestActivity_B.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
             }
         });
     }

@@ -21,7 +21,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private EditText emailTV, passwordTV;
     private Button regBtn;
-    private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
     @Override
@@ -42,8 +41,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void registerNewUser() {
-        progressBar.setVisibility(View.VISIBLE);
-
         String email, password;
         email = emailTV.getText().toString();
         password = passwordTV.getText().toString();
@@ -63,14 +60,11 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-
                             Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
