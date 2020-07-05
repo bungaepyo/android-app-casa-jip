@@ -147,7 +147,7 @@ public class ChatActivity extends AppCompatActivity {
                     case R.id.navigation_home:
                         return true;
                     case R.id.navigation_gallery:
-                        startActivity(new Intent(getApplicationContext(),TestActivity_B.class));
+                        startActivity(new Intent(getApplicationContext(),GalleryActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
