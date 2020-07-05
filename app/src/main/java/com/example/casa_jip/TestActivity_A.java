@@ -34,7 +34,7 @@ public class TestActivity_A extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_gallery:
-                        startActivity(new Intent(getApplicationContext(),TestActivity_B.class));
+                        startActivity(new Intent(getApplicationContext(),GalleryActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
