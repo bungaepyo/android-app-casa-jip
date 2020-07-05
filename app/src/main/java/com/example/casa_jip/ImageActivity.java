@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 public class ImageActivity extends AppCompatActivity {
 
     private ImageView ImageViewThumbnail;
@@ -20,9 +22,9 @@ public class ImageActivity extends AppCompatActivity {
 
         //Receiving Data From Adapter
         Intent intent = getIntent();
-        int ImageThumbnail = intent.getExtras().getInt("Thumbnail");
+        String ImageUrl = intent.getExtras().getString("Url");
 
         //Setting the values in the layout
-        ImageViewThumbnail.setImageResource(ImageThumbnail);
+        Glide.with(ImageActivity.this.getBaseContext()).load(ImageUrl).into(ImageViewThumbnail);
     }
 }

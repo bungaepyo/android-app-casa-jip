@@ -2,17 +2,17 @@ package com.example.casa_jip;
 
 public class ImageData {
 
-    private int Thumbnail;
+    private String Url;
 
-    public ImageData(int thumbnail){
-        Thumbnail = thumbnail;
+    public ImageData(String url){
+        Url = url;
     }
 
-    public int getThumbnail() {
-        return Thumbnail;
+    public String getUrl() {
+        return Url;
     }
 
-    public void setThumbnail(int thumbnail) {
-        Thumbnail = thumbnail;
+    public void setUrl(String url) {
+        Url = url;
     }
 }

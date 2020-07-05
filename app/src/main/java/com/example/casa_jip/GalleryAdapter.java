@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHolder> {
@@ -32,7 +34,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
 
     }
 
-    public GalleryAdapter(Context mContext, List<ImageData> mImageList) {
+    public GalleryAdapter(List<ImageData> mImageList, Context mContext) {
         this.mContext = mContext;
         this.mImageList = mImageList;
     }
@@ -51,7 +53,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        holder.ImageView_image_thumbnail.setImageResource(mImageList.get(position).getThumbnail());
+        ImageData image = mImageList.get(position);
+
+        String url = image.getUrl();
+        Glide.with(holder.itemView.getContext()).load(url).into(holder.ImageView_image_thumbnail);
+        //holder.ImageView_image_thumbnail.setImageResource(image.getUrl());
 
         //Click Listener
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +67,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
                 Intent intent = new Intent(mContext, ImageActivity.class);
 
                 //Passing data to ImageActivity
-                intent.putExtra("Thumbnail", mImageList.get(position).getThumbnail());
+                intent.putExtra("Url", mImageList.get(position).getUrl());
                 mContext.startActivity(intent);
 
             }
@@ -74,7 +80,10 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         return mImageList.size();
     }
 
-
+    public void addImage(ImageData image){
+        mImageList.add(image);
+        notifyItemInserted(mImageList.size()-1);
+    }
 
 
 }
