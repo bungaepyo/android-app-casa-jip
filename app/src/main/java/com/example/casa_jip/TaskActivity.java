@@ -65,9 +65,12 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String taskMessage = EditText_taskMessage.getText().toString();
-                String strDue = LocalDate.now().toString();
+                String strDue = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    strDue = LocalDate.now().toString();
+                }
 
-                if (taskMessage != null) {
+                if (taskMessage.length() > 0) {
                     TaskData task = new TaskData();
                     task.setTaskMessage(taskMessage);
                     task.setTaskBoolean(false);
@@ -106,7 +109,7 @@ public class TaskActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull final DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d("taskchecked", dataSnapshot.getValue().toString());
+                Log.d("taskChecked", dataSnapshot.getValue().toString());
 
                 CheckBox_taskChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -142,7 +145,7 @@ public class TaskActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Chat Selected
-        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_task);
 
         //ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
@@ -151,13 +154,13 @@ public class TaskActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navigation_task:
-                        startActivity(new Intent(getApplicationContext(),TaskActivity.class));
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_home:
+                        startActivity(new Intent(getApplicationContext(),ChatActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_gallery:
-                        startActivity(new Intent(getApplicationContext(),TestActivity_B.class));
+                        startActivity(new Intent(getApplicationContext(),GalleryActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -170,7 +173,7 @@ public class TaskActivity extends AppCompatActivity {
         /** This method keeps focus on the last item of the recyclerView */
         public void updateToEnd() {
             recyclerView.smoothScrollToPosition(mAdapter.getItemCount());
-        };
+        }
 
         /** This method clears out the EditText field*/
         public void clearText() {
@@ -184,7 +187,7 @@ public class TaskActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-        };
+        }
 
 
     }
