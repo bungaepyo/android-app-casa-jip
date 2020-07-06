@@ -2,19 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".TestActivity_B"
-    android:id="@+id/layout_activity_testB"
+    tools:context=".GalleryActivity"
+    android:id="@+id/layout_activity_gallery"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gallery_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="@string/test_B"
-        android:layout_weight="1"
-        android:textSize="30sp"/>
+        android:padding="5dp"
+        android:layout_weight="1"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_upload"
+        app:backgroundTint="@color/orange"
+        app:fabSize="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add_24px"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -26,4 +36,5 @@
         app:itemTextColor="@color/orange"
         app:itemBackground="@color/design_default_color_background"
         />
+
 </LinearLayout>
