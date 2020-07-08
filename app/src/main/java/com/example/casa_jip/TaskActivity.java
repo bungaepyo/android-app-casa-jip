@@ -43,7 +43,6 @@ public class TaskActivity extends AppCompatActivity {
     private EditText EditText_taskMessage;
     private Button btn_add;
     private DatabaseReference myRef;
-
     private CheckBox CheckBox_taskChecked;
     private boolean taskBool;
 
@@ -80,7 +79,6 @@ public class TaskActivity extends AppCompatActivity {
                     updateToEnd();
                     closeKeyboard();
                 }
-
             }
 
         });
@@ -127,17 +125,14 @@ public class TaskActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
