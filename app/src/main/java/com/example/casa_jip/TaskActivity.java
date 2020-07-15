@@ -93,7 +93,7 @@ public class TaskActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://casajip-ddbc9.firebaseio.com/");
         myRef = database.getReference();
 
         myRef.addChildEventListener(new ChildEventListener() {
