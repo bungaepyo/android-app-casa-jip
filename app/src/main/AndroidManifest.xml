@@ -15,10 +15,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ImageActivity" />
         <activity android:name=".GalleryActivity" />
-
         <activity android:name=".TaskActivity" />
-        <activity android:name=".ChatActivity"/>
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

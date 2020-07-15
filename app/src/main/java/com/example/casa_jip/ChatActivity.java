@@ -40,7 +40,6 @@ public class ChatActivity extends AppCompatActivity {
     private String nickname = "nickname_2";
     private EditText EditText_chat;
     private Button Button_send;
-    //private DatabaseReference taskRef;
     private DatabaseReference chatRef;
     private String sendTime;
 
@@ -92,10 +91,7 @@ public class ChatActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
 
-        //FirebaseDatabase taskDb = FirebaseDatabase.getInstance("https://casajip-c4cc9.firebaseio.com/");
-        //taskRef = taskDb.getReference();
-
-        FirebaseDatabase chatDb = FirebaseDatabase.getInstance("https://casajip-c4cc9-50ef0.firebaseio.com/");
+        FirebaseDatabase chatDb = FirebaseDatabase.getInstance("https://casajip-ddbc9-efda1.firebaseio.com/");
         chatRef = chatDb.getReference();
 
         chatRef.addChildEventListener(new ChildEventListener() {

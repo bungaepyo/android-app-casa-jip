@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "609166655138",
-    "firebase_url": "https://casa-jip.firebaseio.com",
-    "project_id": "casa-jip",
-    "storage_bucket": "casa-jip.appspot.com"
+    "project_number": "437317135984",
+    "firebase_url": "https://casajip-ddbc9.firebaseio.com",
+    "project_id": "casajip-ddbc9",
+    "storage_bucket": "casajip-ddbc9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:609166655138:android:faf42668e17b4f28d761fb",
+        "mobilesdk_app_id": "1:437317135984:android:b0d0cee9b01bbfd8028eb5",
         "android_client_info": {
           "package_name": "com.example.casa_jip"
         }
       },
       "oauth_client": [
         {
-          "client_id": "609166655138-bbcecq4r81ei8urparmpsfp2k2jca172.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.casa_jip",
-            "certificate_hash": "a96c24448167a27f9e75506ef99de72df9e56705"
-          }
-        },
-        {
-          "client_id": "609166655138-1tfb4o8agke7gnipa0gln3gl9ts0aups.apps.googleusercontent.com",
+          "client_id": "437317135984-nb94cvdiem86av8d5qngs2bh2bgrv7hk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCpFia8XZQ1db9LtaIdHrBDs3I8GV5lxcw"
+          "current_key": "AIzaSyCqCUGiKXrXeYjevp9aLJ1fu3Ao43tdv1o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "609166655138-1tfb4o8agke7gnipa0gln3gl9ts0aups.apps.googleusercontent.com",
+              "client_id": "437317135984-nb94cvdiem86av8d5qngs2bh2bgrv7hk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
