@@ -1,4 +1,4 @@
-package com.example.casa_jip;
+package com.example.casa_jip.task;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,14 +24,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.casa_jip.R;
+import com.example.casa_jip.chat.ChatMainActivity;
+import com.example.casa_jip.gallery.GalleryActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class TaskActivity extends AppCompatActivity {
@@ -151,11 +152,11 @@ public class TaskActivity extends AppCompatActivity {
                     case R.id.navigation_task:
                         return true;
                     case R.id.navigation_home:
-                        startActivity(new Intent(getApplicationContext(),ChatActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_gallery:
-                        startActivity(new Intent(getApplicationContext(),GalleryActivity.class));
+                        startActivity(new Intent(getApplicationContext(), GalleryActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

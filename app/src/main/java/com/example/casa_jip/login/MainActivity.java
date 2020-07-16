@@ -1,10 +1,12 @@
-package com.example.casa_jip;
+package com.example.casa_jip.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.casa_jip.R;
 
 public class MainActivity extends AppCompatActivity {
 

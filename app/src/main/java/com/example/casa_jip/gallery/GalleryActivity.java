@@ -1,4 +1,4 @@
-package com.example.casa_jip;
+package com.example.casa_jip.gallery;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,16 +13,15 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.casa_jip.R;
+import com.example.casa_jip.task.TaskActivity;
+import com.example.casa_jip.chat.ChatMainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.provider.FirebaseInitProvider;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -109,11 +108,11 @@ public class GalleryActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.navigation_task:
-                        startActivity(new Intent(getApplicationContext(),TaskActivity.class));
+                        startActivity(new Intent(getApplicationContext(), TaskActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_home:
-                        startActivity(new Intent(getApplicationContext(),ChatActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_gallery:

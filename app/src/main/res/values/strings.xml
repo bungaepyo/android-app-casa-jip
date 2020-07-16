@@ -6,4 +6,14 @@
     <string name="gallery">Gallery</string>
     <string name="btn_add">Add</string>
     <string name="btn_complete">Complete</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="next">NEXT</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="create_new_account">Create a new account</string>
+    <string name="create">Create</string>
+    <string name="image">Image</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.casa_jip;
+package com.example.casa_jip.task;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

@@ -1,4 +1,4 @@
-package com.example.casa_jip;
+package com.example.casa_jip.task;
 
 import android.os.Build;
 
@@ -14,11 +14,7 @@ public class TaskData implements Serializable {
     // note due is string and dueDate is a date Object
 
     public boolean getTaskBoolean() {
-        if (taskBool) {
-            return true;
-        } else {
-            return false;
-        }
+        return taskBool;
     }
 
     public void setTaskBoolean(boolean taskBool) {

@@ -1,13 +1,13 @@
-package com.example.casa_jip;
+package com.example.casa_jip.gallery;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.casa_jip.R;
 
 public class ImageActivity extends AppCompatActivity {
 
