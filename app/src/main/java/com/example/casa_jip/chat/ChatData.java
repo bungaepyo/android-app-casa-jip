@@ -1,4 +1,4 @@
-package com.example.casa_jip;
+package com.example.casa_jip.chat;
 
 import java.io.Serializable;
 

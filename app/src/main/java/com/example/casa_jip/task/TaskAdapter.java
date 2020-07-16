@@ -1,7 +1,6 @@
-package com.example.casa_jip;
+package com.example.casa_jip.task;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.casa_jip.R;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public TaskAdapter(List<TaskData> myDataset, Context context) {
-        mDataset = myDataset;;
+        mDataset = myDataset;
     }
 
     // Create new views (invoked by the layout manager)

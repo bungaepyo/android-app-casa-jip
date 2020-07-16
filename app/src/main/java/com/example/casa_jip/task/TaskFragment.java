@@ -1,11 +1,15 @@
-package com.example.casa_jip;
+package com.example.casa_jip.task;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.content.Context;
+import android.os.Build;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -20,21 +24,19 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import com.example.casa_jip.R;
 
-public class TaskActivity extends AppCompatActivity {
+public class TaskFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -47,16 +49,26 @@ public class TaskActivity extends AppCompatActivity {
     private boolean taskBool;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task);
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_task, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
         // add more tasks
-        EditText_taskMessage = findViewById(R.id.EditText_taskMessage);
-        btn_add = findViewById(R.id.btn_add);
+        EditText_taskMessage = getView().findViewById(R.id.EditText_taskMessage);
+        btn_add = getView().findViewById(R.id.btn_add);
 
         // is the task completed
-        CheckBox_taskChecked = findViewById(R.id.CheckBox_taskChecked);
+        CheckBox_taskChecked = getView().findViewById(R.id.CheckBox_taskChecked);
 
         // when btn_add is clicked with text filled, it pushes the taskMessage
         btn_add.setOnClickListener(new View.OnClickListener() {
@@ -83,13 +95,13 @@ public class TaskActivity extends AppCompatActivity {
 
         });
 
-        recyclerView = findViewById(R.id.task_recycler_view);
+        recyclerView = getView().findViewById(R.id.task_recycler_view);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         taskList = new ArrayList<>();
-        mAdapter = new TaskAdapter(taskList, TaskActivity.this);
+        mAdapter = new TaskAdapter(taskList, getActivity());
         recyclerView.setAdapter(mAdapter);
 
         // Write a message to the database
@@ -134,57 +146,25 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
-        });
 
-        //Initialize
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        //Set Chat Selected
-        bottomNavigationView.setSelectedItemId(R.id.navigation_task);
-
-        //ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
-        {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.navigation_task:
-                        return true;
-                    case R.id.navigation_home:
-                        startActivity(new Intent(getApplicationContext(),ChatActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.navigation_gallery:
-                        startActivity(new Intent(getApplicationContext(),GalleryActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
         });
     }
-
-
-        /** This method keeps focus on the last item of the recyclerView */
-        public void updateToEnd() {
-            recyclerView.smoothScrollToPosition(mAdapter.getItemCount());
-        }
-
-        /** This method clears out the EditText field*/
-        public void clearText() {
-            EditText_taskMessage.getText().clear();
-            }
-
-        /** This method systematically closes the keyboard */
-        private void closeKeyboard() {
-            View view = this.getCurrentFocus();
-            if (view != null) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            }
-        }
-
-
+    /** This method keeps focus on the last item of the recyclerView */
+    public void updateToEnd() {
+        recyclerView.smoothScrollToPosition(mAdapter.getItemCount());
     }
 
+    /** This method clears out the EditText field*/
+    public void clearText() {
+        EditText_taskMessage.getText().clear();
+    }
 
+    /** This method systematically closes the keyboard */
+    private void closeKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gallery_nav_graph"
+    app:startDestination="@id/galleryHomeFragment">
+
+    <fragment
+        android:id="@+id/galleryHomeFragment"
+        android:name="com.example.casa_jip.gallery.GalleryHomeFragment"
+        android:label="fragment_gallery_home"
+        tools:layout="@layout/fragment_gallery_home" >
+        <action
+            android:id="@+id/action_galleryHomeFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.example.casa_jip.gallery.GalleryFragment"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_gallery" />
+</navigation>
