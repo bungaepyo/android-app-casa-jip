@@ -6,7 +6,9 @@
     <string name="gallery">Gallery</string>
     <string name="btn_add">Add</string>
     <string name="btn_complete">Complete</string>
-    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_chat_fragment">Hello chat fragment</string>
+    <string name="hello_gallery_fragment">Hello gallery fragment</string>
+    <string name="hello_task_fragment">Hello task fragment</string>
     <string name="next">NEXT</string>
     <string name="sign_in">Sign In</string>
     <string name="email">Email</string>

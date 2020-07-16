@@ -1,4 +1,4 @@
-package com.example.casa_jip.chat;
+package com.example.casa_jip.gallery;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,26 +8,25 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.casa_jip.R;
-import com.example.casa_jip.gallery.GalleryMainActivity;
+import com.example.casa_jip.chat.ChatMainActivity;
 import com.example.casa_jip.task.TaskMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ChatMainActivity extends AppCompatActivity {
+public class GalleryMainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_main);
+        setContentView(R.layout.activity_gallery_main);
 
         //Initialize
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Chat Selected
-        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_gallery);
 
         //ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
-        {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
@@ -36,11 +35,12 @@ public class ChatMainActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_home:
-                        return true;
-                    case R.id.navigation_gallery:
-                        startActivity(new Intent(getApplicationContext(), GalleryMainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.navigation_gallery:
+                        return true;
+
                 }
                 return false;
             }

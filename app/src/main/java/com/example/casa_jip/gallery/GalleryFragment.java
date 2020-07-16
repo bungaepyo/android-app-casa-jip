@@ -1,25 +1,22 @@
 package com.example.casa_jip.gallery;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.casa_jip.R;
-import com.example.casa_jip.task.TaskActivity;
-import com.example.casa_jip.chat.ChatMainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FirebaseStorage;
@@ -29,7 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GalleryActivity extends AppCompatActivity {
+public class GalleryFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private GalleryAdapter mAdapter;
@@ -38,12 +35,23 @@ public class GalleryActivity extends AppCompatActivity {
     private StorageReference storageRef;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery);
 
+    }
+
+    @Override
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState
+    ){
+        return inflater.inflate(R.layout.fragment_gallery, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstancesState){
         //Upload Button OnClickListener
-        FloatingActionButton fab = findViewById(R.id.button_upload);
+        FloatingActionButton fab = getView().findViewById(R.id.button_upload);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,9 +62,9 @@ public class GalleryActivity extends AppCompatActivity {
 
         ImageList = new ArrayList<>();
 
-        mRecyclerView = findViewById(R.id.gallery_recycler_view);
-        mAdapter = new GalleryAdapter(ImageList, GalleryActivity.this);
-        mLayoutManager = new GridLayoutManager(this,3);
+        mRecyclerView = getView().findViewById(R.id.gallery_recycler_view);
+        mAdapter = new GalleryAdapter(ImageList, getActivity());
+        mLayoutManager = new GridLayoutManager(getActivity(),3);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -95,32 +103,6 @@ public class GalleryActivity extends AppCompatActivity {
                     }
                 });
 
-
-        //Initialize
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        //Set Chat Selected
-        bottomNavigationView.setSelectedItemId(R.id.navigation_gallery);
-
-        //ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.navigation_task:
-                        startActivity(new Intent(getApplicationContext(), TaskActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.navigation_home:
-                        startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.navigation_gallery:
-                        return true;
-
-                }
-                return false;
-            }
-        });
     }
+
 }

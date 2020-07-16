@@ -11,10 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chat.ChatMainActivity"/>
+        <activity android:name=".task.TaskMainActivity"/>
+        <activity android:name=".gallery.GalleryMainActivity" />
+        <activity android:name=".chat.ChatMainActivity" />
         <activity android:name=".gallery.ImageActivity" />
-        <activity android:name=".gallery.GalleryActivity" />
-        <activity android:name=".task.TaskActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.MainActivity">
             <intent-filter>
