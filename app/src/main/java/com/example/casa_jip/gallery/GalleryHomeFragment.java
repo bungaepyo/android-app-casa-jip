@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.casa_jip.R;
-import com.example.casa_jip.chat.ChatHomeFragment;
 
 public class GalleryHomeFragment extends Fragment {
 
@@ -31,7 +30,7 @@ public class GalleryHomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.all_photos_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(GalleryHomeFragment.this)

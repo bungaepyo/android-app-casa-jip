@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".gallery.GalleryFragment"
-    android:id="@+id/layout_activity_gallery"
+    android:id="@+id/layout_fragment_gallery"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
