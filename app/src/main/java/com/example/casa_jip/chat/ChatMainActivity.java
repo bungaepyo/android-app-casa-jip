@@ -1,10 +1,13 @@
 package com.example.casa_jip.chat;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 
 import com.example.casa_jip.R;
@@ -13,6 +16,7 @@ import com.example.casa_jip.task.TaskMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ChatMainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,4 +50,5 @@ public class ChatMainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

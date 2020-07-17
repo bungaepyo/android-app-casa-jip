@@ -21,4 +21,10 @@
     <string name="image">Image</string>
     <string name="all_photos">All Photos</string>
     <string name="favorite">Favorite</string>
+    <string name="rename">Rename</string>
+    <string name="addMember">Add Member</string>
+    <string name="photo">Photo</string>
+    <string name="leaveChat">Leave Chat</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
