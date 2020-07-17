@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">casa_jip</string>
+    <string name="app_name">CASA JIP</string>
     <string name="button_send">SEND</string>
     <string name="task">Task</string>
     <string name="home">Home</string>
+    <string name="chat">Chat</string>
     <string name="gallery">Gallery</string>
     <string name="btn_add">Add</string>
     <string name="btn_complete">Complete</string>

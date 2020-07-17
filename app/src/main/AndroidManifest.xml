@@ -11,11 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".task.TaskMainActivity"/>
-        <activity android:name=".gallery.GalleryMainActivity" />
-        <activity android:name=".chat.ChatMainActivity" />
-        <activity android:name=".gallery.ImageActivity" />
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".task.TaskMainActivity"
+            android:label="@string/task"/>
+        <activity android:name=".gallery.GalleryMainActivity"
+            android:label="@string/gallery"/>
+        <activity android:name=".chat.ChatMainActivity"
+            android:label="@string/chat"/>
+        <activity android:name=".gallery.ImageActivity"
+            android:label="@string/gallery"/>
+        <activity android:name=".login.LoginActivity"
+            android:label="@string/login"/>
         <activity android:name=".login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.RegistrationActivity" />
+        <activity android:name=".login.RegistrationActivity"
+            android:label="@string/register"/>
     </application>
 
 </manifest>
