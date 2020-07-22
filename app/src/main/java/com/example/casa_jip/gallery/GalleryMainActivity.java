@@ -7,12 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.casa_jip.BaseActivity;
 import com.example.casa_jip.R;
 import com.example.casa_jip.chat.ChatMainActivity;
 import com.example.casa_jip.task.TaskMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class GalleryMainActivity extends AppCompatActivity {
+public class GalleryMainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

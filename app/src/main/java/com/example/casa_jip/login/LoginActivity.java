@@ -13,14 +13,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.casa_jip.R;
 import com.example.casa_jip.chat.ChatMainActivity;
+import com.example.casa_jip.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String TAG = "SignInActivity";
 
+    private DatabaseReference mDatabase;
     private EditText emailTB, passwordTB;
+    private String email, password;
     private Button btn_login;
     private FirebaseAuth mAuth;
 
@@ -42,8 +48,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUserAccount() {
-
-        String email, password;
         email = emailTB.getText().toString();
         password = passwordTB.getText().toString();
 
@@ -62,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
+                            onAuthSuccess(task.getResult().getUser());
                             Intent intent = new Intent(LoginActivity.this, ChatMainActivity.class);
                             startActivity(intent);
                         } else {
@@ -70,6 +75,31 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void onAuthSuccess(FirebaseUser user) {
+        String username = usernameFromEmail(user.getEmail());
+
+        // write new user
+        writeNewUser(user.getUid(), username, user.getEmail());
+
+        // go to MainActivity
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
+    }
+
+    private String usernameFromEmail(String email) {
+        if (email.contains("@")) {
+            return email.split("@")[0];
+        } else {
+            return email;
+        }
+    }
+
+    private void writeNewUser(String userId, String name, String email) {
+        User user = new User(name, email);
+
+        mDatabase.child("users").child(userId).setValue(user);
     }
 
     private void initializeUI() {

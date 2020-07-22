@@ -6,29 +6,30 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.casa_jip.BaseActivity;
 import com.example.casa_jip.R;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginMainActivity extends BaseActivity {
 
     Button registerBtn, loginBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login_main);
 
         initializeViews();
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                Intent intent = new Intent(LoginMainActivity.this, RegistrationActivity.class);
                 startActivity(intent);
             }
         });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(LoginMainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

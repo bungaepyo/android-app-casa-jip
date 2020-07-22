@@ -21,7 +21,7 @@
             android:label="@string/gallery"/>
         <activity android:name=".login.LoginActivity"
             android:label="@string/login"/>
-        <activity android:name=".login.MainActivity">
+        <activity android:name=".login.LoginMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

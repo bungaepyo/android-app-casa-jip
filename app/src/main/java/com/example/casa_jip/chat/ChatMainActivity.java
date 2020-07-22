@@ -10,12 +10,13 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 
+import com.example.casa_jip.BaseActivity;
 import com.example.casa_jip.R;
 import com.example.casa_jip.gallery.GalleryMainActivity;
 import com.example.casa_jip.task.TaskMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ChatMainActivity extends AppCompatActivity {
+public class ChatMainActivity extends BaseActivity {
 
 
     @Override
