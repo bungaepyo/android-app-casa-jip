@@ -7,9 +7,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    android:layout_gravity="bottom">
+    android:layout_gravity="bottom"
+    android:background="@color/taskBack">
 
     <!-- A RecyclerView with some commonly used attributes -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/task_recycler_view"

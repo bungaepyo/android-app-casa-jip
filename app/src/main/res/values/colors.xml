@@ -7,4 +7,5 @@
     <color name="gray">#C4C4C4</color>
     <color name="white">#ffffff</color>
     <color name="darkGray">#6c6c6c</color>
+    <color name="taskBack">#DCE1E7</color>
 </resources>

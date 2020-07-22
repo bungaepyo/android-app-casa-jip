@@ -17,6 +17,7 @@
         app:itemBackground="@color/design_default_color_background"
         app:itemIconTint="@color/orange"
         app:itemTextColor="@color/orange"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_navigation" />
 
     <fragment

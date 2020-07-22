@@ -34,7 +34,7 @@ public class GalleryMainActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), TaskMainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.navigation_home:
+                    case R.id.navigation_chat:
                         startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
                         overridePendingTransition(0,0);
                         return true;

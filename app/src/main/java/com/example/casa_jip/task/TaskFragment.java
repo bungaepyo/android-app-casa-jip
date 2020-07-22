@@ -1,16 +1,19 @@
 package com.example.casa_jip.task;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +22,7 @@ import android.widget.EditText;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -48,10 +52,22 @@ public class TaskFragment extends Fragment {
     private CheckBox CheckBox_taskChecked;
     private boolean taskBool;
 
+    //Calendar View Button - Action Bar
+
+    private void showDatePickerDialog(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                getActivity(),
+                (DatePickerDialog.OnDateSetListener) this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -63,6 +79,14 @@ public class TaskFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
+
+        getView().findViewById(R.id.calendar_button).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showDatePickerDialog();
+            }
+        });
+
         // add more tasks
         EditText_taskMessage = getView().findViewById(R.id.EditText_taskMessage);
         btn_add = getView().findViewById(R.id.btn_add);
